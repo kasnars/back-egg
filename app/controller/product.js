@@ -3,9 +3,10 @@ const Controller = require('egg').Controller;
 
 class ProductController extends Controller {
   async index() {
-    const { ctx } = this;
-    const res = await ctx.service.product.index();
-    ctx.body = res;
+    const { ctx, app } = this;
+    // const res = await ctx.service.product.index();
+    const sql = await app.mysql.select('read');
+    ctx.body = sql;
   }
 
   async detail() {

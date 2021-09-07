@@ -29,6 +29,25 @@ module.exports = appInfo => {
       '.html': 'ejs',
     },
   };
+  config.mysql = {
+    // 单数据库信息配置
+    client: {
+      // host
+      host: 'gz-cynosdbmysql-grp-ox2m9wvp.sql.tencentcdb.com',
+      // 端口号
+      port: '27943',
+      // 用户名
+      user: 'root',
+      // 密码
+      password: 'asir.20000809',
+      // 数据库名
+      database: 'kasnars',
+    },
+    // 是否加载到 app 上，默认开启
+    app: true,
+    // 是否加载到 agent 上，默认关闭
+    agent: false,
+  };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
