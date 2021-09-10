@@ -11,4 +11,5 @@ module.exports = app => {
   router.get('/product/detail2/:id', controller.product.detail2);
   router.post('/product/create', controller.product.create);
   router.get('/read', controller.read.addIndex);
+  router.get('/juheapi/weather', controller.juheapi.weather);
 };

@@ -52,6 +52,17 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+    domainWhiteList: [ '*' ], // 白名单
+  };
+
+  config.cors = {
+    origin: '*', // 跨任何域
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS', // 被允许的请求方式
+  };
 
   return {
     ...config,
