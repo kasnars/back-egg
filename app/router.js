@@ -12,4 +12,5 @@ module.exports = app => {
   router.post('/product/create', controller.product.create);
   router.get('/read', controller.read.addIndex);
   router.get('/juheapi/weather', controller.juheapi.weather);
+  router.get('/getworks', controller.getworks.getworks);
 };
