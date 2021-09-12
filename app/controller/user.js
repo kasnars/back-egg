@@ -18,8 +18,8 @@ class UserController extends Controller {
         data: reqData,
       };
     } else {
+      ctx.status = 401;
       ctx.body = {
-        status: 200,
         msg: '注册失败',
       };
     }
@@ -44,7 +44,11 @@ class UserController extends Controller {
     }
     if (res.password === password) {
       ctx.status = 200;
-      ctx.data = '登录成功';
+      ctx.body = {
+        id: res.id,
+        name: res.name,
+        nickname: res.nickname,
+      };
     } else {
       ctx.status = 403;
       ctx.body = {
