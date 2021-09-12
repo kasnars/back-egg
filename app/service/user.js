@@ -13,6 +13,15 @@ class UserService extends Service {
     const res = app.mysql.insert('user', newdata);
     return res;
   }
+  async getUserById(postname) {
+    const { app } = this;
+    try {
+      const res = await app.mysql.get('user', { name: postname });
+      return res || '-1';
+    } catch (err) {
+      return -1;
+    }
+  }
 }
 
 module.exports = UserService;

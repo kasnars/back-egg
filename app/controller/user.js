@@ -23,7 +23,6 @@ class UserController extends Controller {
         msg: '注册失败',
       };
     }
-
   }
   async getAll() {
     const { ctx } = this;
@@ -31,6 +30,29 @@ class UserController extends Controller {
     ctx.body = {
       data,
     };
+  }
+  async login() {
+    const { ctx } = this;
+    const { name, password } = ctx.request.body;
+    const res = await ctx.service.user.getUserById(name);
+    if (res < 0) {
+      ctx.status = 403;
+      ctx.body = {
+        msg: '账号不存在',
+      };
+      return;
+    }
+    if (res.password === password) {
+      ctx.status = 200;
+      ctx.data = '登录成功';
+    } else {
+      ctx.status = 403;
+      ctx.body = {
+        msg: '账号或密码错误',
+      };
+      return;
+    }
+    console.log(res.password, 'passs');
   }
 }
 
