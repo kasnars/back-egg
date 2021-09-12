@@ -10,9 +10,15 @@ module.exports = app => {
   router.get('/product/detail', controller.product.detail);
   router.get('/product/detail2/:id', controller.product.detail2);
   router.post('/product/create', controller.product.create);
+
   router.get('/read', controller.read.addIndex);
+
   router.get('/juheapi/weather', controller.juheapi.weather);
+
   router.get('/getworks', controller.getworks.getworks);
+
   router.get('/article', controller.article.getarticle);
   router.get('/article/:id', controller.article.getById);
+
+  router.get('/timelocus', controller.timelocus.getAll);
 };
