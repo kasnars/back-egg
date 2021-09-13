@@ -50,6 +50,7 @@ class UserController extends Controller {
         id: res.id,
         name: res.name,
         nickname: res.nickname,
+        img: res.img,
         token,
       };
     } else {
