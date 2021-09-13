@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const Token = require('../middleware/token');
 
 class UserService extends Service {
   async getAll() {
@@ -21,6 +22,10 @@ class UserService extends Service {
     } catch (err) {
       return -1;
     }
+  }
+  async userVer(token) {
+    const ver = Token.decrypt(token);
+    return ver;
   }
 }
 
