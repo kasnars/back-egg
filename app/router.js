@@ -27,5 +27,7 @@ module.exports = app => {
   router.post('/login', controller.user.login);
   router.get('/user/:name', controller.user.getUserInfo);
 
-  router.post('/comment', controller.conment.newComment);
+  // router.post('/comment', controller.conment.newComment);
+  router.get('/comment', controller.conment.getAll);
+  router.post('/comment', controller.conment.create);
 };

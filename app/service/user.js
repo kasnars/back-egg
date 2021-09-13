@@ -23,9 +23,11 @@ class UserService extends Service {
       return -1;
     }
   }
-  async userVer(token) {
-    const ver = Token.decrypt(token);
-    return ver;
+  async userVer() {
+    const { ctx } = this;
+    const userToken = ctx.get('Authorization').split(' ')[1];
+    const tokenStatus = Token.decrypt(userToken);
+    return tokenStatus.token;
   }
 }
 
