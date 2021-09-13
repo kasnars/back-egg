@@ -58,6 +58,21 @@ class UserController extends Controller {
     }
     console.log(res.password, 'passs');
   }
+  async getUserInfo() {
+    const { ctx } = this;
+    const res = await ctx.service.user.getUserById(ctx.params.name);
+    if (res !== -1) {
+      ctx.status = 200;
+      ctx.body = {
+        data: res,
+      };
+    } else {
+      ctx.status = 401;
+      ctx.body = {
+        msg: '用户不存在',
+      };
+    }
+  }
 }
 
 module.exports = UserController;
