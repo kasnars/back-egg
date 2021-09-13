@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const Token = require('../middleware/token');
 
 class UserController extends Controller {
   async newUser() {
@@ -43,11 +44,13 @@ class UserController extends Controller {
       return;
     }
     if (res.password === password) {
+      const token = Token.encrypt({ id: res.name }, '15d');
       ctx.status = 200;
       ctx.body = {
         id: res.id,
         name: res.name,
         nickname: res.nickname,
+        token,
       };
     } else {
       ctx.status = 403;
