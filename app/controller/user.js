@@ -122,6 +122,20 @@ class UserController extends Controller {
     }
     ctx.body = result;
   }
+
+  async updataUser() {
+    const { ctx } = this;
+    ctx.status = 200;
+    const dataUser = ctx.request.body;
+    const res = ctx.service.user.updataUser(dataUser);
+    if (!res) {
+      ctx.status = 401;
+      ctx.body = '修改失败';
+      return;
+    }
+    ctx.status = 200;
+    ctx.body = dataUser;
+  }
 }
 
 module.exports = UserController;

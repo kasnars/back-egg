@@ -29,6 +29,22 @@ class UserService extends Service {
     const tokenStatus = Token.decrypt(userToken);
     return tokenStatus.token;
   }
+
+  async updataUser(data) {
+    const { app } = this;
+    const row = {
+      nickname: data.nickname,
+      img: data.img,
+      personal: data.personal,
+    };
+    const options = {
+      where: {
+        name: data.name,
+      },
+    };
+    const res = await app.mysql.update('user', row, options);
+    return res.affectedRows === 1;
+  }
 }
 
 module.exports = UserService;
