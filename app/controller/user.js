@@ -10,13 +10,19 @@ const sendToWormhole = require('stream-wormhole');
 
 class UserController extends Controller {
   async newUser() {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const reqData = ctx.request.body;
     const toNewUser = {
       name: reqData.name,
       password: reqData.password,
       nickname: reqData.nickname,
     };
+    const signed = await app.mysql.get('user', { name: toNewUser.name });
+    if (signed) {
+      ctx.status = 401;
+      ctx.body = '已被注册';
+      return;
+    }
     const res = await ctx.service.user.newUser(toNewUser);
     if (res.affectedRows === 1) {
       ctx.body = {
