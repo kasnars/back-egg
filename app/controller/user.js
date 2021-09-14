@@ -2,6 +2,11 @@
 
 const Controller = require('egg').Controller;
 const Token = require('../middleware/token');
+// const iconvlite = require('iconv-lite');
+
+const fs = require('fs');
+const path = require('path');
+const sendToWormhole = require('stream-wormhole');
 
 class UserController extends Controller {
   async newUser() {
@@ -76,6 +81,46 @@ class UserController extends Controller {
         msg: '用户不存在',
       };
     }
+  }
+
+  async loadimg() {
+    // const form = new multiparty.Form();
+    const { ctx } = this;
+    // egg getFileStream 方法自动创建文件可读流
+    const stream = await ctx.getFileStream();
+    // 创建文件写入路径
+    const write = () => new Promise((resolve, reject) => {
+
+      // stream.fieldname = iconvlite.decode(stream.fieldname, 'utf-8');
+      // 获取文件名并加入随机字符串
+      const filename = parseInt(Math.random() * 100) + '-' + new Date().getTime() + '-' + stream.filename;
+      // 存储地址
+      const target = path.join(`${__dirname}`, `../public/img/${filename}`);
+      // 创建可写流
+      const fileStrem = fs.createWriteStream(target);
+      // 建立管道
+      stream.pipe(fileStrem);
+      // 监听错误
+      let errFlag = false;
+      fileStrem.on('error', err => {
+        errFlag = true;
+        sendToWormhole(stream);
+        fileStrem.destroy();
+        reject(ctx.body = err);
+      });
+      // 上传完成回写图片地址
+      fileStrem.on('finish', () => {
+        if (errFlag) return;
+        resolve(ctx.body = { url: 'http://' + ctx.host + `/public/img/${filename}` });
+      });
+    });
+    let result;
+    try {
+      result = await write();
+    } catch (e) {
+      console.log(e);
+    }
+    ctx.body = result;
   }
 }
 
