@@ -35,4 +35,6 @@ module.exports = app => {
   router.put('/comment/:id', controller.conment.like);
 
   router.post('/upload', controller.user.loadimg);
+
+  router.get('/me', controller.home.download);
 };
