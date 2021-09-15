@@ -14,6 +14,24 @@ class CommentService extends Service {
     const res = await app.mysql.insert('comment', data);
     return res.affectedRows === 1;
   }
+
+  async like(id) {
+    const { app } = this;
+    const commentInfo = await app.mysql.get('comment', { id });
+    if (!commentInfo) {
+      return false;
+    }
+    const row = {
+      likes: commentInfo.likes + 1,
+    };
+    const options = {
+      where: {
+        id,
+      },
+    };
+    const res = await app.mysql.update('comment', row, options);
+    return res.affectedRows === 1;
+  }
 }
 
 module.exports = CommentService;

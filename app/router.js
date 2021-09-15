@@ -31,6 +31,7 @@ module.exports = app => {
   // router.post('/comment', controller.conment.newComment);
   router.get('/comment', controller.conment.getAll);
   router.post('/comment', controller.conment.create);
+  router.put('/comment/:id', controller.conment.like);
 
   router.post('/upload', controller.user.loadimg);
 };

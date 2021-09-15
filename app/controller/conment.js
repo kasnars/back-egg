@@ -40,6 +40,17 @@ class CommentController extends Controller {
       ctx.body = '插入失败';
     }
   }
+
+  async like() {
+    const { ctx } = this;
+    const id = ctx.params.id;
+    const res = await ctx.service.comment.like(id);
+    if (!res) {
+      ctx.status = 401;
+      ctx.body = '点赞失败';
+    }
+    ctx.body = res;
+  }
 }
 
 module.exports = CommentController;
