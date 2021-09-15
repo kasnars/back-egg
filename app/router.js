@@ -19,6 +19,7 @@ module.exports = app => {
 
   router.get('/article', controller.article.getarticle);
   router.get('/article/:id', controller.article.getById);
+  router.put('/article/:id', controller.article.like);
 
   router.get('/timelocus', controller.timelocus.getAll);
 

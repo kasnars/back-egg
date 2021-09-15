@@ -13,7 +13,35 @@ class DemoService extends Service {
     const res = await app.mysql.get('article', {
       id: getid,
     });
+    const options = {
+      where: {
+        id: getid,
+      },
+    };
+    const row = {
+      visited: res.visited + 1,
+    };
+    await app.mysql.update('article', row, options);
     return res;
+  }
+
+  async like(id) {
+    const { app } = this;
+    const articleInfo = await app.mysql.get('article', { id });
+    console.log(articleInfo, 'info');
+    if (!articleInfo) {
+      return false;
+    }
+    const row = {
+      likeCount: articleInfo.likeCount + 1,
+    };
+    const options = {
+      where: {
+        id,
+      },
+    };
+    const res = await app.mysql.update('article', row, options);
+    return res.affectedRows === 1;
   }
 }
 

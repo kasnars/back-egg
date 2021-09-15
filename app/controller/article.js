@@ -20,6 +20,19 @@ class ArticleController extends Controller {
       data: res,
     };
   }
+
+  async like() {
+    const { ctx } = this;
+    const id = ctx.params.id;
+    const res = await ctx.service.article.like(id);
+    if (!res) {
+      ctx.status = 401;
+      ctx.body = '点赞失败';
+      return;
+    }
+    ctx.status = 200;
+    ctx.body = true;
+  }
 }
 
 module.exports = ArticleController;
