@@ -4,7 +4,8 @@ const Service = require('egg').Service;
 class DemoService extends Service {
   async getworks() {
     const { app } = this;
-    const works = app.mysql.select('works');
+    const works = await app.mysql.select('works');
+    // console.log(works, 'work');
     return works;
   }
 }
