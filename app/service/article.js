@@ -3,9 +3,12 @@
 const Service = require('egg').Service;
 
 class DemoService extends Service {
-  async getAll() {
+  async getAll(nowpage = 1) {
     const { app } = this;
-    const res = await app.mysql.select('article');
+    const res = await app.mysql.select('article', {
+      limit: 4,
+      offset: (nowpage - 1) * 4,
+    });
     return res;
   }
   async getById(getid) {
