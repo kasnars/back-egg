@@ -1,33 +1,21 @@
-# kasegg
+# 个人主页及通用后端
 
+## 主要技术栈  
+_nodejs+mysql+centos_
 
-
-## QuickStart
+### 前端部分
 
 <!-- add docs here for user -->
 
-see [egg docs][egg] for more detail.
+[个人主页前端代码](https://gitee.com/kasnars/personalblog)
 
-### Development
+### 实现功能
 
-```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/
-```
+- 实现文章，个人信息的增删改查功能  
+- 实现文件的下载和图片的上传功能  
+- 利用jwt方式进行鉴权
+- 实现访问量记录  
+- 对公共API进行数据处理并且转发到前端
+- 后端CORS实现跨域
+- 部署至云端的centos系统
 
-### Deploy
-
-```bash
-$ npm start
-$ npm stop
-```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
-
-
-[egg]: https://eggjs.org
