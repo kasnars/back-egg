@@ -11,6 +11,30 @@ class JuheapiController extends Controller {
       data: res.data,
     };
   }
+  async getmusic() {
+    const { ctx } = this;
+    const keywords = ctx.query.keywords;
+    const limit = ctx.query.limit;
+    const url = `http://bao.lqjhome.cn:3000/cloudsearch?keywords=${keywords}&limit=${limit}`;
+    const res = await this.ctx.curl(url, { dataType: 'json' });
+    ctx.body = res.data;
+  }
+
+  async getUrl() {
+    const { ctx } = this;
+    const id = ctx.query.id;
+    const url = `http://bao.lqjhome.cn:3000/song/url?id=${id}`;
+    const res = await this.ctx.curl(url, { dataType: 'json' });
+    ctx.body = res.data;
+  }
+
+  async getLyric() {
+    const { ctx } = this;
+    const id = ctx.query.id;
+    const url = `http://bao.lqjhome.cn:3000/lyric?id=${id}`;
+    const res = await this.ctx.curl(url, { dataType: 'json' });
+    ctx.body = res.data;
+  }
 }
 
 module.exports = JuheapiController;

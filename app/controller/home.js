@@ -14,8 +14,8 @@ class HomeController extends Controller {
     });
   }
   async download() {
-    const filePath = path.resolve(this.app.config.static.dir, '个人简历刘杨鑫test.pdf');
-    this.ctx.attachment('个人简历刘杨鑫test.pdf');
+    const filePath = path.resolve(this.app.config.static.dir, '前端开发工程师_刘杨鑫.pdf');
+    this.ctx.attachment('前端开发工程师_刘杨鑫.pdf');
     this.ctx.set('Content-Type', 'application/octet-stream');
     this.ctx.body = fs.createReadStream(filePath);
   }
