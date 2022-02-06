@@ -14,6 +14,7 @@ module.exports = app => {
   router.get('/read', controller.read.addIndex);
 
   router.get('/juheapi/weather', controller.juheapi.weather);
+  router.get('/juheapi/news', controller.juheapi.getNews);
   router.get('/juheapi/getmusic', controller.juheapi.getmusic);
   router.get('/juheapi/geturl', controller.juheapi.getUrl);
   router.get('/juheapi/getlyric', controller.juheapi.getLyric);

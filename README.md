@@ -19,3 +19,5 @@ _nodejs+mysql+centos_
 - 后端CORS实现跨域
 - 部署至云端的centos系统
 
+##### 2022.02.06
+- 增加聚合api里的天气和新闻接口
