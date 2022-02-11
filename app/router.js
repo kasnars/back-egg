@@ -41,4 +41,6 @@ module.exports = app => {
   router.post('/upload', controller.user.loadimg);
 
   router.get('/me', controller.home.download);
+
+  router.post('/ai',controller.ai.aiFlowerByBaidu);
 };
