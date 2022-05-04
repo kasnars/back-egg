@@ -43,4 +43,13 @@ module.exports = app => {
   router.get('/me', controller.home.download);
 
   router.post('/ai',controller.ai.aiFlowerByBaidu);
+  router.post('/ai/getAllFlower',controller.ai.getAllFlower)
+  router.post('/ai/getFlowerByName',controller.ai.getFlowerByName)
+  router.post('/ai/getFlowerById', controller.ai.getFlowerById)
+  router.post('/ai/create', controller.ai.userCreateData)
+  router.post('/ai/mpuser',controller.ai.mpUserList)
+  router.post('/ai/like',controller.ai.userCreateLike)
+  router.post('/ai/likeList',controller.ai.getUserLike)
+  router.post('/ai/addHistory',controller.ai.addHistory)
+  router.post('/ai/getHistory',controller.ai.getUserHistory)
 };

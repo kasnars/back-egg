@@ -63,6 +63,17 @@ module.exports = appInfo => {
     origin: '*', // 跨任何域
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS', // 被允许的请求方式
   };
+  config.cluster = {
+    // listen:{
+    //   // path:'',
+    //   port:443,
+    //   // hostname:'0.0.0.0'
+    // },
+    // https: {
+    //   key: './kasnars.club.key',
+    //   cert: './kasnars.club.pem',
+    // },
+  };
 
   return {
     ...config,
